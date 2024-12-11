@@ -1,0 +1,5 @@
+name: CustomCraftingRecipesPlugin
+version: '1.0-SNAPSHOT'
+main: me.fofola1.customCraftingRecipesPlugin.CustomCraftingRecipesPlugin
+api-version: '1.20'
+authors: [ FOFOLA_1 ]
