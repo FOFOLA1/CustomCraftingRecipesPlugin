@@ -9,26 +9,51 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Lang {
 
-    private static Map<String, String> active_messages = new HashMap<>();
-    private static Map<String, String> fallback_messages = new HashMap<>();
+    private static FileConfiguration active_messages;
+    private static FileConfiguration fallback_messages;
     private static CustomCraftingRecipesPlugin plugin = CustomCraftingRecipesPlugin.getInstance();
 
 
-    public static String get(String key) {
-        if (active_messages.get(key) != null) return ChatColor.translateAlternateColorCodes('&', active_messages.get(key));
+    public static String getString(String key) {
+        if (active_messages.get(key) != null) return ChatColor.translateAlternateColorCodes('&', active_messages.getString(key));
         else if (fallback_messages.get(key) != null) {
             plugin.LogWarn("Key \"" + key + "\" was not found in activated language, using key from fallback language instead!");
-            return ChatColor.translateAlternateColorCodes('&', fallback_messages.get(key));
+            return ChatColor.translateAlternateColorCodes('&', fallback_messages.getString(key));
         }
         else {
             plugin.LogError("Key \"" + key + "\" was not found in active nor fallback language! Did not using any text for this key!");
             return "";
+        }
+    }
+
+    public static ArrayList<String> getStringList(String key) {
+        if (active_messages.get(key) != null) {
+            List<String> arr = active_messages.getStringList(key);
+            for (int i = 0; i < arr.size(); i++) {
+                arr.set(i, ChatColor.translateAlternateColorCodes('&', arr.get(i)));
+            }
+            return (ArrayList<String>) arr;
+        }
+        else if (fallback_messages.get(key) != null) {
+            plugin.LogWarn("Key \"" + key + "\" was not found in activated language, using key from fallback language instead!");
+            List<String> arr = fallback_messages.getStringList(key);
+            for (int i = 0; i < arr.size(); i++) {
+                arr.set(i, ChatColor.translateAlternateColorCodes('&', arr.get(i)));
+            }
+            return (ArrayList<String>) arr;
+        }
+        else {
+            plugin.LogError("Key \"" + key + "\" was not found in active nor fallback language! Did not using any text for this key!");
+            return new ArrayList<>();
         }
     }
 
@@ -51,7 +76,7 @@ public class Lang {
 
             }
 
-            load_lang(enFile, fallback_messages);
+            fallback_messages = YamlConfiguration.loadConfiguration(enFile);
             plugin.LogInfo("Fallback language loaded");
 
             if (!setFile.exists()) {
@@ -59,23 +84,17 @@ public class Lang {
                 active_messages = fallback_messages;
             } else {
                 plugin.LogInfo("Loading language: " + setFile.getName());
-                load_lang(setFile, active_messages);
-                plugin.LogInfo(get("log.on_load").replace("%lang_file_name%", setFile.getName()));
+                active_messages = YamlConfiguration.loadConfiguration(setFile);
+                plugin.LogInfo(getString("log.on_load").replace("%lang_file_name%", setFile.getName()));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
-    private static void load_lang(File file, Map<String, String> target) {
-        FileConfiguration lang = YamlConfiguration.loadConfiguration(file);
-        for (String key : lang.getKeys(false)) {
-            for (String messName : lang.getConfigurationSection(key).getKeys(false)) {
-                String message = lang.getString(key + "." + messName);
-                target.put(key + "." + messName, message);
-            }
-        }
+    public static void reload() {
+        active_messages = null;
+        fallback_messages = null;
+        load();
     }
 }

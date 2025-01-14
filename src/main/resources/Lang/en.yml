@@ -2,5 +2,15 @@ log:
     on_load: "Lang file %lang_file_name% loaded successfully!"
 main_menu:
     header: "&5Custom Crafting Recipes"
-    crafting_table_name: "&d&lCrafting Table"
-    crafting_table_lore: "&5Create your own recipes for crafting table"
+    crafting_table:
+        name: "&d&lCrafting Table"
+        lore:
+            - "&5Create your own recipes for crafting table"
+    custom_recipes_book:
+        name: "&d&lRecipe Book"
+        lore:
+            - "&5Here you can browse, edit or delete your saved recipes"
+    exit:
+        name: "&4&lExit"
+        lore:
+            - "&7Exit menu"

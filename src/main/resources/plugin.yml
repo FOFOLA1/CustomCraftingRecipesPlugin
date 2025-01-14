@@ -8,3 +8,9 @@ commands:
   customrecipe:
     description: main menu of custom crafting recipe plugin
     usage: /<command>
+
+  getlangstring:
+    description: test
+
+  getnewenfile:
+    description: test

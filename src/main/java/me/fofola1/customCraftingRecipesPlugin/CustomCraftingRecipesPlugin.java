@@ -1,8 +1,9 @@
 package me.fofola1.customCraftingRecipesPlugin;
 
 import me.fofola1.customCraftingRecipesPlugin.Commands.CustomCraftingCommand;
+import me.fofola1.customCraftingRecipesPlugin.Commands.GetLangStringCommand;
+import me.fofola1.customCraftingRecipesPlugin.Commands.GetNewEnFile;
 import me.fofola1.customCraftingRecipesPlugin.Configs.Lang;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CustomCraftingRecipesPlugin extends JavaPlugin {
@@ -26,8 +27,8 @@ public final class CustomCraftingRecipesPlugin extends JavaPlugin {
 
 
 
-
-
+        getCommand("getnewenfile").setExecutor(new GetNewEnFile());  // TEST
+        getCommand("getlangstring").setExecutor(new GetLangStringCommand());  // TEST
         getCommand("customrecipe").setExecutor(new CustomCraftingCommand());
         LogInfo("PLUGIN STARTED");
     }
