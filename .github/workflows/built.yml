@@ -6,17 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
     - run: wget "https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-2/binaries/apache-maven-4.0.0-rc-2-bin.tar.gz"
     - run: tar -zxf apache-maven-4.0.0-rc-2-bin.tar.gz
 
-    
-    - run: |
-        pwd
-        ls
-        tree -l
-        mvn clean
+    - run: mvn clean
       working-directory: ${{ github.workspace }}
-    - run: |
-        pwd
-        mvn compile
+    - run: mvn compile
+      working-directory: ${{ github.workspace }}
     - run: mvn package
+      working-directory: ${{ github.workspace }}
