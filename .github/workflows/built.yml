@@ -12,6 +12,7 @@ jobs:
     - run: |
         pwd
         ls
+        tree -l
         mvn clean
       working-directory: ${{ github.workspace }}
     - run: |
