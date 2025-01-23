@@ -1,0 +1,17 @@
+name: Builder
+run-name: ${{ github.actor }} has started build
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Maven
+      uses: hb0730/maven-action@latest
+      with:
+        maven-version: 3.8.2
+        maven-file: ${{ runner.temp }}/apache-maven-3.8.2-bin.tar.gz
+        url: https://downloads.apache.org/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.tar.gz
+
+    - run: mvn clean
+    - run: mvn compile
+    - run: mvn package
