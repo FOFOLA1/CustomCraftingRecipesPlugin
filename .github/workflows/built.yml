@@ -8,9 +8,9 @@ jobs:
     - name: Set up Maven
       uses: hb0730/maven-action@v1.0.2
       with:
-        maven-version: 3.8.2
-        maven-file: ${{ runner.temp }}/apache-maven-3.8.2-bin.tar.gz
-        url: https://downloads.apache.org/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.tar.gz
+        maven-version: 4.0.0
+        maven-file: ${{ runner.temp }}/apache-maven-4.0.0-bin.tar.gz
+        url: https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-2/binaries/apache-maven-4.0.0-rc-2-bin.tar.gz
 
     - run: mvn clean
     - run: mvn compile
