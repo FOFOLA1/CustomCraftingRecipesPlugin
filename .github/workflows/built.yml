@@ -10,9 +10,9 @@ jobs:
 
     
     - run: |
-      cd ${{ github.workspace }}
-      mvn clean
+        cd ${{ github.workspace }}
+        mvn clean
     - run: |
-      pwd
-      mvn compile
+        pwd
+        mvn compile
     - run: mvn package
