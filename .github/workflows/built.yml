@@ -5,6 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+    - run: ls
     - name: Set up Maven
       uses: hb0730/maven-action@v1.0.2
       with:
