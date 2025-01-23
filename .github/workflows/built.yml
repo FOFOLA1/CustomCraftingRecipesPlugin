@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set up Maven
-      uses: hb0730/maven-action@latest
+      uses: hb0730/maven-action@v1.0.2
       with:
         maven-version: 3.8.2
         maven-file: ${{ runner.temp }}/apache-maven-3.8.2-bin.tar.gz
