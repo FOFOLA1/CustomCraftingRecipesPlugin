@@ -8,6 +8,11 @@ jobs:
     - run: wget "https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-2/binaries/apache-maven-4.0.0-rc-2-bin.tar.gz"
     - run: tar -zxf apache-maven-4.0.0-rc-2-bin.tar.gz
 
-    - run: mvn clean
-    - run: mvn compile
+    
+    - run: |
+      cd ${{ github.workspace }}
+      mvn clean
+    - run: |
+      pwd
+      mvn compile
     - run: mvn package
