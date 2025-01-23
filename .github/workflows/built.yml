@@ -12,6 +12,7 @@ jobs:
     - run: |
         cd ${{ github.workspace }}
         pwd
+        ls
         mvn clean
     - run: |
         pwd
