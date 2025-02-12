@@ -11,7 +11,7 @@ import java.io.File;
 
 public class GetNewEnFile implements CommandExecutor {
 
-    private static CustomCraftingRecipesPlugin plugin = CustomCraftingRecipesPlugin.getInstance();
+    private static final CustomCraftingRecipesPlugin plugin = CustomCraftingRecipesPlugin.getInstance();
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {

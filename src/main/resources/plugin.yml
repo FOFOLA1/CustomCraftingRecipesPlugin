@@ -8,9 +8,19 @@ commands:
   customrecipe:
     description: main menu of custom crafting recipe plugin
     usage: /<command>
+    permission: customrecipes.menu
+    aliases:
+      - cr
+      - crecipe
+
 
   getlangstring:
     description: test
 
   getnewenfile:
     description: test
+
+permissions:
+  permissions.menu:
+    description: allows to edit custom recipes and use menu of the plugin
+    default: op

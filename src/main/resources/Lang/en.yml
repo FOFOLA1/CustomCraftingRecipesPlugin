@@ -1,7 +1,9 @@
 log:
     on_load: "Lang file %lang_file_name% loaded successfully!"
+commands:
+    has_no_permission: "&4You don't have permission to do that!"
 main_menu:
-    header: "&5Custom Crafting Recipes"
+    header: "&5&lCustom Crafting Recipes"
     crafting_table:
         name: "&d&lCrafting Table"
         lore:
@@ -14,3 +16,14 @@ main_menu:
         name: "&4&lExit"
         lore:
             - "&7Exit menu"
+
+set_name_anvil:
+    header: "&5&lEnter name for your new recipe"
+    default_name: "New item %id%"
+
+recipes_creators:
+    crafting:
+        header: "&5Crafting creator"
+        create_recipe:
+            allowed: "&2&lCreate"
+            unallowed: "&4&l&mCreate"

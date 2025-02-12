@@ -4,6 +4,10 @@ import me.fofola1.customCraftingRecipesPlugin.Commands.CustomCraftingCommand;
 import me.fofola1.customCraftingRecipesPlugin.Commands.GetLangStringCommand;
 import me.fofola1.customCraftingRecipesPlugin.Commands.GetNewEnFile;
 import me.fofola1.customCraftingRecipesPlugin.Configs.Lang;
+import me.fofola1.customCraftingRecipesPlugin.Listeners.MenuClickListener;
+import me.fofola1.customCraftingRecipesPlugin.Listeners.MenuCloseListener;
+import me.fofola1.customCraftingRecipesPlugin.Listeners.MenuDragListener;
+import me.fofola1.customCraftingRecipesPlugin.Menus.Menus;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CustomCraftingRecipesPlugin extends JavaPlugin {
@@ -19,6 +23,7 @@ public final class CustomCraftingRecipesPlugin extends JavaPlugin {
         saveDefaultConfig();
 
         Lang.load();
+        Menus.init();
 
 
 
@@ -30,6 +35,11 @@ public final class CustomCraftingRecipesPlugin extends JavaPlugin {
         getCommand("getnewenfile").setExecutor(new GetNewEnFile());  // TEST
         getCommand("getlangstring").setExecutor(new GetLangStringCommand());  // TEST
         getCommand("customrecipe").setExecutor(new CustomCraftingCommand());
+
+        getServer().getPluginManager().registerEvents(new MenuClickListener(), this);
+        getServer().getPluginManager().registerEvents(new MenuCloseListener(), this);
+        getServer().getPluginManager().registerEvents(new MenuDragListener(), this);
+
         LogInfo("PLUGIN STARTED");
     }
 
