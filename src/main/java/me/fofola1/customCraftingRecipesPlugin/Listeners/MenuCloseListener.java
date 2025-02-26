@@ -1,6 +1,7 @@
 package me.fofola1.customCraftingRecipesPlugin.Listeners;
 
 import me.fofola1.customCraftingRecipesPlugin.Menus.Holders.CraftingRacipeMenuHolder;
+import me.fofola1.customCraftingRecipesPlugin.Utils.MenuData;
 import me.fofola1.customCraftingRecipesPlugin.Utils.Preloaded;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,6 +19,7 @@ public class MenuCloseListener implements Listener {
     }
 
     private void crafting_recipe_menu(InventoryCloseEvent e) {
+        if (MenuData.get(e.getPlayer().getUniqueId()) != null) return;
         Inventory topinv = e.getView().getTopInventory();
         Inventory pinv = e.getPlayer().getInventory();
 
@@ -25,6 +27,7 @@ public class MenuCloseListener implements Listener {
             if (topinv.getItem(i) != null) pinv.addItem(topinv.getItem(i));
         }
         if (topinv.getItem(Preloaded.crafting_output) != null) pinv.addItem(topinv.getItem(Preloaded.crafting_output));
+        MenuData.remove(e.getPlayer().getUniqueId());
     }
 
 

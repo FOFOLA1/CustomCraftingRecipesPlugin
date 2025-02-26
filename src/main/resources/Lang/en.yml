@@ -2,6 +2,12 @@ log:
     on_load: "Lang file %lang_file_name% loaded successfully!"
 commands:
     has_no_permission: "&4You don't have permission to do that!"
+chat:
+    unexpected_error: "&4An unexpected error occured, try again later"
+    enter_recipe_name: "&dType the name of the recipe to the chat. You can also put it inside folder by \"/\" but name still must be fully unique. To cancel type \"cancel\""
+    invalid_recipe_name: "&4Invalid recipe name! It should contain only A-Z, 0-9, spaces, \"_\", \"-\"."
+    recipe_name_already_exists: "&cThis recipe name already exists, try to use different one!"
+    recipe_create_success: "&dNew recipe was created successfuly"
 main_menu:
     header: "&5&lCustom Crafting Recipes"
     crafting_table:
@@ -17,9 +23,6 @@ main_menu:
         lore:
             - "&7Exit menu"
 
-set_name_anvil:
-    header: "&5&lEnter name for your new recipe"
-    default_name: "New item %id%"
 
 recipes_creators:
     crafting:

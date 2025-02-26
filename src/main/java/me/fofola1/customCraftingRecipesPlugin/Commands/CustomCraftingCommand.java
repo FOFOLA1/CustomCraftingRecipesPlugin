@@ -14,7 +14,7 @@ public class CustomCraftingCommand implements CommandExecutor {
 
         if (commandSender instanceof Player) {
             if (commandSender.hasPermission("customrecipes.menu")) {
-                ((Player) commandSender).openInventory(new MainMenu().getMenu());
+                ((Player) commandSender).openInventory(new MainMenu().get());
             } else {
                 commandSender.sendMessage(Lang.getString("commands.has_no_permission"));
             }

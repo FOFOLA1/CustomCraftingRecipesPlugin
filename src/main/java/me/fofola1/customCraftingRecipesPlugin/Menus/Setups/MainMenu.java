@@ -19,15 +19,13 @@ import java.util.ArrayList;
 
 public class MainMenu {
     private static final CustomCraftingRecipesPlugin plugin = CustomCraftingRecipesPlugin.getInstance();
-    private static Inventory main_menu;
+    private Inventory main_menu;
 
-    public Inventory getMenu() {
-        Inventory newinv = Bukkit.createInventory(new MainMenuHolder(), 5*9, ChatColor.translateAlternateColorCodes('&',Lang.getString("main_menu.header")));
-        newinv.setContents(main_menu.getContents());
-        return newinv;
+    public Inventory get() {
+        return main_menu;
     }
 
-    public static void load() {
+    public MainMenu() {
         ItemMeta meta;
 
         main_menu = Bukkit.createInventory(new MainMenuHolder(), 5*9, ChatColor.translateAlternateColorCodes('&',Lang.getString("main_menu.header")));

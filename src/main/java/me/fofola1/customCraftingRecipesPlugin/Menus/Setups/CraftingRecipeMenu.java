@@ -14,15 +14,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CraftingRecipeMenu {
-    private static Inventory craftingRecipeMenu;
+    private Inventory craftingRecipeMenu;
 
-    public Inventory getMenu() {
-        Inventory newinv = Bukkit.createInventory(new CraftingRacipeMenuHolder(), 6*9, ChatColor.translateAlternateColorCodes('&',Lang.getString("recipes_creators.crafting.header")));
-        newinv.setContents(craftingRecipeMenu.getContents());
-        return newinv;
+    public Inventory get() {
+        return craftingRecipeMenu;
     }
 
-    public static void load() {
+    public CraftingRecipeMenu() {
         ItemMeta meta;
 
         craftingRecipeMenu = Bukkit.createInventory(new CraftingRacipeMenuHolder(), 6*9, ChatColor.translateAlternateColorCodes('&', Lang.getString("recipes_creators.crafting.header")));

@@ -20,6 +20,21 @@ commands:
   getnewenfile:
     description: test
 
+  getmenudata:
+    description: test
+
+  getitemslist:
+    description: test
+
+  getrecipeitems:
+    description: test
+
+  getrecipe:
+    description: test
+
+  removerecipe:
+    description: test
+
 permissions:
   permissions.menu:
     description: allows to edit custom recipes and use menu of the plugin

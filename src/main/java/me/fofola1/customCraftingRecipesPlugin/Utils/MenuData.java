@@ -1,12 +1,8 @@
 package me.fofola1.customCraftingRecipesPlugin.Utils;
 
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class MenuData {
     private static Map<UUID, DataStorage> data = new HashMap<UUID, DataStorage>();
@@ -31,5 +27,7 @@ public class MenuData {
     public static void edit(UUID uuid, ArrayList<ItemStack> items) {
         get(uuid).setItems(items);
     }
-
+    public static Set<UUID> getUUIDList() {
+        return data.keySet();
+    }
 }

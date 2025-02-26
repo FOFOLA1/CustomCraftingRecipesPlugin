@@ -13,15 +13,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class RecipesBookMenu {
-    public static Inventory recipeBookMenu;
+    public Inventory recipeBookMenu;
 
-    public Inventory getMenu() {
-        Inventory newinv = Bukkit.createInventory(new RecipesBookMenuHolder(), 5*9, ChatColor.translateAlternateColorCodes('&',Lang.getString("main_menu.header")));
-        newinv.setContents(recipeBookMenu.getContents());
-        return newinv;
+    public Inventory get() {
+        return recipeBookMenu;
     }
 
-    public static void load() {
+    public RecipesBookMenu() {
         ItemMeta meta;
 
         recipeBookMenu = Bukkit.createInventory(new RecipesBookMenuHolder(), 5*9, ChatColor.translateAlternateColorCodes('&', Lang.getString("main_menu.header")));
