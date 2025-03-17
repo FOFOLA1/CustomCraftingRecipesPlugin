@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MenuClickListener implements Listener {
     private static final CustomCraftingRecipesPlugin plugin = CustomCraftingRecipesPlugin.getInstance();
@@ -79,7 +80,10 @@ public class MenuClickListener implements Listener {
                 ) {
                     Player p = (Player) e.getWhoClicked();
                     ArrayList<ItemStack> items = new ArrayList<>();
+                    ItemStack item;
                     for (int i : Preloaded.crafting_allowed) {
+                        item = topinv.getItem(i);
+                        if (item != null) item.setAmount(1);
                         items.add(topinv.getItem(i));
                     }
                     items.add(topinv.getItem(Preloaded.crafting_output));
