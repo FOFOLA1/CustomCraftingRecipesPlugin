@@ -3,6 +3,7 @@ package me.fofola1.customCraftingRecipesPlugin.Menus.Setups;
 import me.fofola1.customCraftingRecipesPlugin.Configs.Lang;
 import me.fofola1.customCraftingRecipesPlugin.Menus.Holders.CraftingRacipeMenuHolder;
 import me.fofola1.customCraftingRecipesPlugin.Utils.Items;
+import me.fofola1.customCraftingRecipesPlugin.Utils.Preloaded;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -38,11 +39,8 @@ public class CraftingRecipeMenu {
         ));
         for (int i = 0; i < 6*9; i++) if (!spaces.contains(i)) craftingRecipeMenu.setItem(i, bg1);
 
-        craftingRecipeMenu.setItem(8, Items.createGuiItem(
-                Material.RED_WOOL,
-                Lang.getString("recipes_creators.crafting.create_recipe.unallowed"),
-                new ArrayList<>()
-        ));
+        craftingRecipeMenu.setItem(8, Preloaded.create_recipe_unallowed);
+        craftingRecipeMenu.setItem(7, Preloaded.discover_recipe_automaticaly);
 
 
     }
