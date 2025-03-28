@@ -6,6 +6,7 @@ import me.fofola1.customCraftingRecipesPlugin.Listeners.MenuClickListener;
 import me.fofola1.customCraftingRecipesPlugin.Listeners.MenuCloseListener;
 import me.fofola1.customCraftingRecipesPlugin.Listeners.MenuDragListener;
 import me.fofola1.customCraftingRecipesPlugin.Listeners.MessageListener;
+import me.fofola1.customCraftingRecipesPlugin.Utils.Recipes;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -30,7 +31,7 @@ public final class CustomCraftingRecipesPlugin extends JavaPlugin {
         saveDefaultConfig();
 
         Lang.load();
-
+        Recipes.LoadAllRecipes();
 
 
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);

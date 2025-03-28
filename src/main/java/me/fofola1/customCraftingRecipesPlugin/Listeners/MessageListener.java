@@ -3,10 +3,7 @@ package me.fofola1.customCraftingRecipesPlugin.Listeners;
 import me.fofola1.customCraftingRecipesPlugin.Configs.Lang;
 import me.fofola1.customCraftingRecipesPlugin.CustomCraftingRecipesPlugin;
 import me.fofola1.customCraftingRecipesPlugin.Menus.Setups.CraftingRecipeMenu;
-import me.fofola1.customCraftingRecipesPlugin.Utils.DataStorage;
-import me.fofola1.customCraftingRecipesPlugin.Utils.MenuData;
-import me.fofola1.customCraftingRecipesPlugin.Utils.Preloaded;
-import me.fofola1.customCraftingRecipesPlugin.Utils.Utils;
+import me.fofola1.customCraftingRecipesPlugin.Utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -49,7 +46,7 @@ public class MessageListener implements Listener {
                 }
             });
         } else {
-            File recipes_folder = new File(plugin.getDataFolder() + "/Recipes");
+            File recipes_folder = new File(plugin.getDataFolder() + "/Recipes/CraftingTable");
             if (!recipes_folder.exists()) {
                 recipes_folder.mkdirs();
             }
@@ -92,7 +89,7 @@ public class MessageListener implements Listener {
     }
 
     private static void asyncYamlWriter(YamlConfiguration yml, List<ItemStack> items, File newfile, Player p) {
-        formatYml(yml, items);
+        formatYml(yml, items, p);
         try {
             yml.save(newfile);
         } catch (IOException error) {
@@ -100,10 +97,13 @@ public class MessageListener implements Listener {
             plugin.LogError(error.getMessage());
         }
         MenuData.remove(p.getUniqueId());
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            Recipes.LoadRecipe(newfile);
+        });
         p.sendMessage(Lang.getString("chat.recipe_create_success"));
     }
 
-    private static void formatYml(YamlConfiguration yml, List<ItemStack> items) {
+    private static void formatYml(YamlConfiguration yml, List<ItemStack> items, Player p) {
         ItemStack output = items.getLast();
         items.removeLast();
         Map<ItemStack, ArrayList<Integer>> map = new HashMap<>();
@@ -121,7 +121,7 @@ public class MessageListener implements Listener {
 //            if (item != null) {
 //                for (int j = i+1; j < 9; j++) {
 //
-//                }
+//                
 //            }
         }
         List<Character> chars = Arrays.asList( 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'); // imutable
@@ -131,11 +131,14 @@ public class MessageListener implements Listener {
             for (int j : map.get(item)) {
                 grid.set(j, chars.get(i));
             }
-            yml.set(chars.get(i).toString(), item);
+            yml.set(chars.get(i).toString(), item.getType().toString());
         }
 
         ArrayList<String> formated = reduceGrid(grid);
-        yml.set("shape", formated);
+
+        yml.set("shape", formated.toArray());
+        yml.set("output", output);
+        yml.set("auto_discover", MenuData.get(p.getUniqueId()).autoDiscover);
     }
 
     public static ArrayList<String> reduceGrid(ArrayList<Character> grid) {
@@ -179,9 +182,6 @@ public class MessageListener implements Listener {
             }
         }
         out.add(temp.toString());
-        while (out.size() != 3) {
-            out.add("");
-        }
         return out;
     }
 }
