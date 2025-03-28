@@ -30,3 +30,12 @@ recipes_creators:
         create_recipe:
             allowed: "&2&lCreate"
             unallowed: "&4&l&mCreate"
+            discover_recipe:
+                name: "&d&lDiscover recipe:"
+                lore_automaticaly:
+                    - "&7 - &2&lAutomaticaly"
+                    - "&7 - &4Manualy"
+                lore_manualy:
+                    - "&7 - &4Automaticaly"
+                    - "&7 - &2&lManualy"
+
