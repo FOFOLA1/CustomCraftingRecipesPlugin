@@ -71,14 +71,22 @@ public class MenuClickListener implements Listener {
                         )
         )) e.setCancelled(true);
 
+        Player p = (Player) e.getWhoClicked();
         switch (e.getSlot()) {
+            case 7:
+                if (MenuData.get(p.getUniqueId()) == null) MenuData.set(p.getUniqueId(), null, null);
+                MenuData.get(p.getUniqueId()).autoDiscover = !MenuData.get(p.getUniqueId()).autoDiscover;
+                if (MenuData.get(p.getUniqueId()).autoDiscover) {
+                    topinv.setItem(7, Preloaded.discover_recipe_automaticaly);
+                } else {
+                    topinv.setItem(7, Preloaded.discover_recipe_manualy);
+                }
             case 8:
                 if (
                         e.getClickedInventory().equals(topinv) &&
                         Preloaded.crafting_allowed.stream().anyMatch(integer -> topinv.getItem(integer) != null) &&
                         topinv.getItem(Preloaded.crafting_output) != null
                 ) {
-                    Player p = (Player) e.getWhoClicked();
                     ArrayList<ItemStack> items = new ArrayList<>();
                     ItemStack item;
                     for (int i : Preloaded.crafting_allowed) {

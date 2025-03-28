@@ -7,6 +7,7 @@ import java.util.List;
 public class DataStorage {
     private String name;
     private List<ItemStack> items;
+    public boolean autoDiscover = true;
 
     public DataStorage(String name, List<ItemStack> items) {
         this.name = name;
