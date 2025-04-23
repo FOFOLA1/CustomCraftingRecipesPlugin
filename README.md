@@ -16,5 +16,5 @@ It allows you to:
 ```sh
 git clone https://github.com/FOFOLA1/CustomCraftingRecipesPlugin.git
 cd CustomCraftingRecipesPlugin/
-mvn jar:jar -f pom.xml
+mvn package
 ```
