@@ -10,7 +10,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class GetRecipeItemsCommand implements CommandExecutor {
     private static final CustomRecipes plugin = CustomRecipes.getInstance();

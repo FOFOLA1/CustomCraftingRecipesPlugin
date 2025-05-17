@@ -8,10 +8,8 @@ import org.bukkit.entity.Player;
 public class RemoveRecipeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        System.out.println(CustomCraftingRecipesPlugin.key);
         Player p = (Player) commandSender;
-        p.undiscoverRecipe(CustomCraftingRecipesPlugin.key);
-        System.out.println(p.getDiscoveredRecipes().toString());
+        //p.undiscoverRecipe(CustomCraftingRecipesPlugin.key);
         return true;
     }
 }
