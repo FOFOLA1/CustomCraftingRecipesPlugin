@@ -1,13 +1,13 @@
-name: CustomCraftingRecipesPlugin
+name: CustomRecipes
 version: '1.0-SNAPSHOT'
-main: me.fofola1.customCraftingRecipesPlugin.CustomCraftingRecipesPlugin
+main: me.fofola1.CustomRecipes.CustomRecipes
 api-version: '1.20'
 authors: [ FOFOLA_1 ]
 
 commands:
   customrecipe:
-    description: main menu of custom crafting recipe plugin
-    usage: /<command>
+    description: Main menu of CustomRecipes plugin
+    usage: /<command> <subcommand>
     permission: customrecipes.menu
     aliases:
       - cr
