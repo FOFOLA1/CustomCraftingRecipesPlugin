@@ -18,6 +18,10 @@ public class Lang {
     private static FileConfiguration fallback_messages;
     private static final CustomRecipes plugin = CustomRecipes.getInstance();
 
+    public static void unload() {
+        active_messages = null;
+        fallback_messages = null;
+    }
 
     public static String getString(String path) {
         if (active_messages.get(path) != null) return ChatColor.translateAlternateColorCodes('&', active_messages.getString(path));
