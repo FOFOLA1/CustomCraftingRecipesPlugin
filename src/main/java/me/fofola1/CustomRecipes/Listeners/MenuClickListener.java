@@ -79,6 +79,7 @@ public class MenuClickListener implements Listener {
                 } else {
                     topinv.setItem(7, Preloaded.discover_recipe_manualy);
                 }
+                break;
             case 8:
                 if (
                         e.getClickedInventory().equals(topinv) &&
