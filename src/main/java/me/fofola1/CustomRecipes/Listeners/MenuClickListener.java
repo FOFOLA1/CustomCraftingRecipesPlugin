@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class MenuClickListener implements Listener {
     private static final CustomRecipes plugin = CustomRecipes.getInstance();
@@ -74,7 +73,6 @@ public class MenuClickListener implements Listener {
         Player p = (Player) e.getWhoClicked();
         switch (e.getSlot()) {
             case 7:
-                if (MenuData.get(p.getUniqueId()) == null) MenuData.set(p.getUniqueId(), null, null);
                 MenuData.get(p.getUniqueId()).autoDiscover = !MenuData.get(p.getUniqueId()).autoDiscover;
                 if (MenuData.get(p.getUniqueId()).autoDiscover) {
                     topinv.setItem(7, Preloaded.discover_recipe_automaticaly);
@@ -95,7 +93,7 @@ public class MenuClickListener implements Listener {
                         items.add(topinv.getItem(i));
                     }
                     items.add(topinv.getItem(Preloaded.crafting_output));
-                    MenuData.set(p.getUniqueId(), null, items);
+                    MenuData.get(p.getUniqueId()).items = items;
 
                     p.sendMessage(Lang.getString("chat.enter_recipe_name"));
                     p.closeInventory();

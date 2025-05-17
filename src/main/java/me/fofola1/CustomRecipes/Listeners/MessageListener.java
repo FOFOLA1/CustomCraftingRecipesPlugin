@@ -34,7 +34,7 @@ public class MessageListener implements Listener {
                 @Override
                 public void run() {
                     Inventory newinv = new CraftingRecipeMenu().get();
-                    List<ItemStack> items = MenuData.get(p.getUniqueId()).getItems();
+                    List<ItemStack> items = MenuData.get(p.getUniqueId()).items;
                     ArrayList<Integer> ids = Preloaded.crafting_allowed;
                     for (int i = 0; i < ids.size(); i++) {
                         newinv.setItem(ids.get(i), items.get(i));
@@ -73,7 +73,7 @@ public class MessageListener implements Listener {
             }
 
             YamlConfiguration yaml = YamlConfiguration.loadConfiguration(newfile);
-            List<ItemStack> items = MenuData.get(p.getUniqueId()).getItems();
+            List<ItemStack> items = MenuData.get(p.getUniqueId()).items;
 
             //for (int i = 0; i < items.size(); i++) {
             //    yaml.set(String.valueOf(i), items.get(i));

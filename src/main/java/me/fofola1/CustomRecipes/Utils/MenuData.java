@@ -8,25 +8,15 @@ public class MenuData {
     private static Map<UUID, DataStorage> data = new HashMap<UUID, DataStorage>();
 
     public static DataStorage get(UUID uuid) {
+        if (data.get(uuid) == null)
+            data.put(uuid, new DataStorage());
         return data.get(uuid);
-    }
-
-    public static void set(UUID uuid, String name, ArrayList<ItemStack> items) {
-        DataStorage map = new DataStorage(name, items);
-        data.put(uuid, map);
     }
 
     public static void remove(UUID uuid) {
         data.remove(uuid);
     }
 
-    public static void edit(UUID uuid, String name) {
-        get(uuid).setName(name);
-    }
-
-    public static void edit(UUID uuid, ArrayList<ItemStack> items) {
-        get(uuid).setItems(items);
-    }
     public static Set<UUID> getUUIDList() {
         return data.keySet();
     }
