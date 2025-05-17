@@ -11,17 +11,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 public class Recipes {
-    private static final CustomCraftingRecipesPlugin plugin = CustomCraftingRecipesPlugin.getInstance();
-    public static ArrayList<ShapedRecipe> AutoDiscoverRecipes = new ArrayList<ShapedRecipe>();
-    public static ArrayList<ShapedRecipe> ManualDiscoverRecipes = new ArrayList<ShapedRecipe>();
+    private static final CustomRecipes plugin = CustomRecipes.getInstance();
+    public static ArrayList<ShapedRecipe> AutoDiscoverRecipes;
+    public static ArrayList<ShapedRecipe> ManualDiscoverRecipes;
 
     public static void LoadRecipe(File file) {
         FileConfiguration yml = YamlConfiguration.loadConfiguration(file);
-        String name = file.getName().replace(".yml", "");
+        String name = file.getName().replace(".yml", "").replace(" ", "_");
         NamespacedKey key = new NamespacedKey(plugin, name);
         ShapedRecipe recipe = new ShapedRecipe(key, yml.getItemStack("output"));
         ArrayList<String> shape = (ArrayList<String>) yml.getList("shape");
@@ -38,7 +37,10 @@ public class Recipes {
             recipe.setIngredient(c, Material.valueOf(item));
 
         }
-        if (yml.getBoolean("auto_discover")) AutoDiscoverRecipes.add(recipe);
+        if (yml.getBoolean("auto_discover")) {
+            AutoDiscoverRecipes.add(recipe);
+            discoverRecipeToAllPlayers(key);
+        }
         else ManualDiscoverRecipes.add(recipe);
         Bukkit.addRecipe(recipe);
         plugin.LogInfo("Recipe " + name + " loaded");
@@ -58,9 +60,19 @@ public class Recipes {
         Bukkit.reloadData();
     }
 
+    public static void discoverRecipeToAllPlayers(NamespacedKey key) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if (!p.hasDiscoveredRecipe(key)) {
+                p.discoverRecipe(key);
+                plugin.LogInfo(p.getName() + " has discovered recipe " + key.toString().toLowerCase().replace(plugin.getName().toLowerCase() + ":", ""));
+                // TODO prepsat do lang
+            }
+        }
+    }
+
     public static void save(YamlConfiguration yml, List<ItemStack> items, Player p) {
-        ItemStack output = items.getLast();
-        items.removeLast();
+        ItemStack output = items.get(items.size()-1);
+        items.remove(items.size()-1);
         Map<ItemStack, ArrayList<Integer>> map = new HashMap<>();
         ItemStack item;
         ArrayList<Integer> temp;
