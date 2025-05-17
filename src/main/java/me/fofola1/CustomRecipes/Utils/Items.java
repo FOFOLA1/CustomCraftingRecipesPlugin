@@ -22,8 +22,6 @@ public class Items {
         final ItemStack item = new ItemStack(material, amout);
         final ItemMeta meta = item.getItemMeta();
 
-        System.out.println(name);
-
         meta.setDisplayName(name);
         meta.setLore(lore);
 
