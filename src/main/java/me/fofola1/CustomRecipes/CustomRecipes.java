@@ -89,6 +89,7 @@ public final class CustomRecipes extends JavaPlugin {
 
         for (UUID uuid : MenuData.getUUIDList()) {
             Player p = Bukkit.getPlayer(uuid);
+            if (p == null) continue;
             if (!p.isOnline()) continue;
             if (
                     p.getOpenInventory().getTopInventory().getHolder() instanceof CraftingRecipeMenuHolder ||
